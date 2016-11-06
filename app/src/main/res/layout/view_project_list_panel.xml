@@ -1,0 +1,42 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/project_list_root"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <RelativeLayout
+      android:id="@+id/project_list"
+      android:layout_width="0dp"
+      android:layout_weight="0.5"
+      android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/project_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_header_height"
+        android:text="@string/label_projects"
+        android:textStyle="bold"
+        android:textSize="@dimen/view_header_text_size"
+        android:textColor="@color/white"
+        android:background="@color/green_teal"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/project_list_items"
+        android:layout_below="@+id/project_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      />
+
+  </RelativeLayout>
+
+  <View
+      android:layout_width="0dp"
+      android:layout_weight="0.5"
+      android:layout_height="match_parent"
+      android:background="@color/transparent"
+      />
+
+</LinearLayout>

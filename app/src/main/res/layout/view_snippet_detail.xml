@@ -1,0 +1,37 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/snippet_detail_root"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <TextView
+      android:id="@+id/snippet_day"
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/view_header_height"
+      android:textColor="@color/white"
+      android:textStyle="bold"
+      android:textSize="@dimen/view_header_text_size"
+      android:background="@color/green_teal"
+      />
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/snippet_video_note_list"
+      android:layout_width="match_parent"
+      android:layout_height="65dp"
+      />
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/snippet_image_note_list"
+      android:layout_width="match_parent"
+      android:layout_height="120dp"
+      />
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/snippet_text_note_list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+
+</LinearLayout>

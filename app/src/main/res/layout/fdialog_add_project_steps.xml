@@ -1,0 +1,40 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/label_project_steps"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_header_height"
+        android:text="@string/label_project_steps"
+        >
+    </TextView>
+
+    <EditText
+        android:id="@+id/text_project_steps_area"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_header_height"
+        android:inputType="text"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_header_height">
+        <ImageView
+            android:id="@+id/project_add_pre"
+            android:layout_width="@dimen/view_header_icon_size"
+            android:layout_height="@dimen/view_header_icon_size"
+            />
+        <ImageView
+            android:id="@+id/project_add_save"
+            android:layout_width="@dimen/view_header_icon_size"
+            android:layout_height="@dimen/view_header_icon_size"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

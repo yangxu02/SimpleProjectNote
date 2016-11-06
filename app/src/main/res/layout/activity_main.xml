@@ -1,0 +1,31 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <com.linkx.spn.view.components.ViewProjectListPanel
+      android:id="@+id/project_list_panel"
+      android:visibility="gone"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <com.linkx.spn.view.components.ViewActionMenu
+        android:id="@+id/action_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.linkx.spn.view.components.ViewActionMenu>
+
+    <com.linkx.spn.view.components.ViewProjectDetail
+        android:id="@+id/project_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+  </LinearLayout>
+
+</FrameLayout>

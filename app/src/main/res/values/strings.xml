@@ -1,0 +1,27 @@
+<resources>
+  <string name="app_name">National Geographic Album</string>
+  <string name="sendImage">Send Image With</string>
+  <string name="setImage">Set Image As</string>
+  <string name="no_way_to_share_image">No Application To Send Image With</string>
+  <string name="no_way_to_set_image_as">No Application To Set Image As</string>
+  <string name="subscribeTime">发布时间：</string>
+
+  <string name="action_settings">Settings</string>
+  <string name="drawer_open">open drawer</string>
+  <string name="drawer_close">close drawer</string>
+  <string name="home">Home</string>
+  <string name="bookmarks">Bookmarks</string>
+  <string name="people">People</string>
+  <string name="others">Others</string>
+  <string name="settings">Settings</string>
+  <string name="help_and_feedback"><![CDATA[Help & Feedback]]></string>
+
+  <string name="quantity_appropriate">适中</string>
+  <string name="ic_menu_share">Share With</string>
+  <string name="ic_menu_set_as">Set Picture As</string>
+  <string name="label_projects">Projects</string>
+  <string name="text_note_add">add text note here</string>
+  <string name="label_add_text_note">Add Text Note</string>
+  <string name="label_project_name">ProjectName</string>
+  <string name="label_project_steps">Project Steps</string>
+</resources>
