@@ -12,10 +12,10 @@ import java.util.List;
 public abstract class NoteSnippet extends Model{
     @JsonProperty("id")
     public abstract String id();
-    @JsonProperty("createdTime")
-    public abstract long createdTime();
     @JsonProperty("day")
     public abstract String day();
+    @JsonProperty("createdTime")
+    public abstract long createdTime();
     @JsonProperty("textNoteList")
     public abstract List<TextNote> textNodeList();
     @JsonProperty("imageNoteList")

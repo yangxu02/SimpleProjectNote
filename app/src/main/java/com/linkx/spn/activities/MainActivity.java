@@ -2,29 +2,19 @@ package com.linkx.spn.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.linkx.spn.R;
 import com.linkx.spn.data.models.Project;
-import com.linkx.spn.data.services.NGImageService;
+import com.linkx.spn.data.services.ProjectVisitingService;
 import com.linkx.spn.data.services.RxEventBus;
-import com.linkx.spn.data.services.VisitingProjectChangedEvent;
-import com.linkx.spn.view.adapters.AlbumItemAdapter;
+import com.linkx.spn.data.services.LastVisitedProjectChangedEvent;
 import com.linkx.spn.view.components.ViewActionMenu;
 import com.linkx.spn.view.components.ViewProjectDetail;
 import com.linkx.spn.view.components.ViewProjectListPanel;
 import com.linkx.spn.view.dialogs.ProjectNameInputDialog;
-import com.linkx.spn.view.listeners.EndlessRecyclerOnScrollListener;
 import rx.Subscription;
-import rx.functions.Action1;
-
-import java.util.Collections;
-import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -61,9 +51,10 @@ public class MainActivity extends BaseActivity {
             projectDetail.update(lastSelected);
         }
 
-        subscription = RxEventBus.onEventMainThread(VisitingProjectChangedEvent.class, visitingProjectChangedEvent -> {
-            Project project = visitingProjectChangedEvent.getProject();
+        subscription = RxEventBus.onEventMainThread(LastVisitedProjectChangedEvent.class, visitingProjectChangedEvent -> {
+            Project project = ProjectVisitingService.worker().getProjectById(visitingProjectChangedEvent.projectId);
             projectDetail.update(project);
+            projectListPanel.setVisibility(View.GONE);
         });
     }
 

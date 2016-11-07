@@ -8,17 +8,26 @@ import com.google.auto.value.AutoValue;
  */
 @AutoValue
 public abstract class MediaNote extends Model {
+    public enum Type {
+        video,
+        image
+    }
+
     @JsonProperty("basic")
     public abstract Note basic();
     @JsonProperty("url")
     public abstract String url();
     @JsonProperty("path")
     public abstract String path();
+    @JsonProperty("type")
+    public abstract Type type();
 
     public static MediaNote create(@JsonProperty("basic") Note basic,
                                    @JsonProperty("url") String url,
-                                   @JsonProperty("path") String path) {
-        return new AutoValue_MediaNote(basic, url, path);
+                                   @JsonProperty("path") String path,
+                                   @JsonProperty("type") Type type
+    ) {
+        return new AutoValue_MediaNote(basic, url, path, type);
     }
 
     @Override

@@ -7,15 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.linkx.spn.R;
 import com.linkx.spn.data.models.Project;
 import com.linkx.spn.data.services.RxEventBus;
-import com.linkx.spn.data.services.VisitingProjectChangedEvent;
-import com.linkx.spn.view.adapters.AlbumItemAdapter;
+import com.linkx.spn.data.services.LastVisitedProjectChangedEvent;
 
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +64,7 @@ public class ViewProjectListPanel extends FrameLayout {
 
                 holder.itemView.setOnClickListener(l -> {
                     // TODO update detail view
-                    RxEventBus.post(new VisitingProjectChangedEvent(project));
+                    RxEventBus.post(new LastVisitedProjectChangedEvent(project.id()));
                 });
             }
 

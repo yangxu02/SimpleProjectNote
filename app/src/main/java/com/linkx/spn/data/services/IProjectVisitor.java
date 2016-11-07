@@ -2,6 +2,7 @@ package com.linkx.spn.data.services;
 
 import com.linkx.spn.data.models.Project;
 
+import com.linkx.spn.data.models.TextNote;
 import java.util.List;
 
 /**
@@ -13,5 +14,14 @@ public interface IProjectVisitor {
     Project getLastVisited();
 
     List<Project> getAllProjects();
+
+    String generateProjectId();
+
+    void saveProject(Project project);
+
+    Project getProjectById(String id);
+
+    String generateTextNoteId();
+    void saveTextNote(TextNote textNote);
 
 }

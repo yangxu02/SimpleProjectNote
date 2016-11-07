@@ -11,6 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.linkx.spn.R;
 import com.linkx.spn.data.models.Project;
+import com.linkx.spn.view.adapters.ProjectStepAdapter;
 
 public class ViewProjectDetail extends FrameLayout {
 
@@ -40,8 +41,9 @@ public class ViewProjectDetail extends FrameLayout {
     }
 
     public void update(Project project) {
-
+        projectName.setText(project.name());
+        ProjectStepAdapter projectStepAdapter = ProjectStepAdapter.create();
+        projectSteps.setAdapter(projectStepAdapter);
     }
-
 
 }

@@ -14,7 +14,8 @@ import com.linkx.spn.R;
 import com.linkx.spn.data.models.Project;
 import com.linkx.spn.data.models.Status;
 import com.linkx.spn.data.models.Step;
-import com.linkx.spn.data.services.VisitingProjectChangedEvent;
+import com.linkx.spn.data.services.ProjectVisitingService;
+import com.linkx.spn.data.services.LastVisitedProjectChangedEvent;
 import com.linkx.spn.data.services.RxEventBus;
 
 import java.util.Collections;
@@ -61,7 +62,7 @@ public class ProjectStepsInputDialog extends DialogFragment {
         save.setOnClickListener(v -> {
             projectSteps = projectStepsText.getText().toString();
             Project project = saveProject(projectName, parseStepsFromInput(projectSteps));
-            RxEventBus.post(new VisitingProjectChangedEvent(project));
+            RxEventBus.post(new LastVisitedProjectChangedEvent(project.id()));
             this.dismiss();
         });
 
@@ -79,9 +80,11 @@ public class ProjectStepsInputDialog extends DialogFragment {
     private Project saveProject(String projectName, List<Step> projectSteps) {
         // TODO
         // get project id
+        ProjectVisitingService pvs = ProjectVisitingService.worker();
         long now = System.currentTimeMillis();
-        String id = "" + now;
+        String id = pvs.generateProjectId();
         Project project = Project.create(id, projectName, now, projectSteps, Status.pending);
+        pvs.saveProject(project);
         return project;
     }
 

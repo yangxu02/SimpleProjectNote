@@ -35,35 +35,5 @@ public class ViewProjectList extends FrameLayout {
         ButterKnife.bind(this);
     }
 
-    public com.linkx.spn.view.components.ViewStarList setWeight(float weight, int base) {
-        Context context = getContext();
-        int width = this.getLayoutParams().width;
-        int height = this.getLayoutParams().height;
-        int starWidth = (int) (0.9 * height);
-        int starHeight = (int) (0.9 * height);
-        int scale = base / count;
-        float weightScaled = weight / scale;
-        starList.removeAllViews();
-        for (int i = 0; i < count; ++i) {
-            ViewStarShape starShape = new ViewStarShape(context);
-            starShape.setSize(starWidth, starHeight);
-            ViewStarShape.FillStyle fillStyle;
-            if (weightScaled >= 1) {
-                fillStyle = ViewStarShape.FillStyle.Full;
-            } else if (weightScaled < 1 && weightScaled > 0) {
-                fillStyle = ViewStarShape.FillStyle.Half;
-            } else {
-                fillStyle = ViewStarShape.FillStyle.None;
-            }
-            starList.addView(starShape.setFillStyle(fillStyle));
-            weightScaled -= 1;
-//            Log.d("Trends", "i=" + i + ",width=" + width + ",height=" + height
-//                    + ",starWidth=" + starWidth + ",starHeight=" + starHeight + ",fill=" + fillStyle
-//                    + ",weight=" + weight + ",scaledWeight=" + weightScaled
-//            );
-        }
-        return this;
-    }
-
 
 }

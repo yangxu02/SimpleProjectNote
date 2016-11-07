@@ -1,5 +1,6 @@
 package com.linkx.spn.data.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 
@@ -13,8 +14,14 @@ public abstract class Note extends Model {
     @JsonProperty("createdTime")
     public abstract long createdTime();
 
+    @JsonCreator
+    public static Note create(@JsonProperty("id") String id, @JsonProperty("createdTime") long createdTime) {
+        return new AutoValue_Note(id, createdTime);
+    }
+
     @Override
     public String identity() {
         return id();
     }
+
 }

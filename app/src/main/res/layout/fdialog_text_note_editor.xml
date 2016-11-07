@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_header_height"
-        android:text="@string/add_text_note"
+        android:text="@string/label_add_text_note"
         >
     </TextView>
 
