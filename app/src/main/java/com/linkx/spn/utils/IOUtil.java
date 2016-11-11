@@ -25,6 +25,17 @@ public class IOUtil {
     private final static String CACHE_DIR = ".nga/cache";
     private final static String TMP_DIR = ".nga/tmp";
 
+    public static String dbDir(String dir) {
+        File storageDirectory = Environment.getExternalStorageDirectory();
+        return Joiner.on('/').join(storageDirectory.getAbsolutePath(), dir);
+    }
+
+    public static String dbFileName(String dir, String name) {
+        File storageDirectory = Environment.getExternalStorageDirectory();
+        return Joiner.on('/').join(storageDirectory.getAbsolutePath(), dir, name);
+    }
+
+
     public static String dataFileDir() {
         File dir = Environment.getExternalStorageDirectory();
         return Joiner.on('/').join(dir.getAbsolutePath(), DATA_DIR);

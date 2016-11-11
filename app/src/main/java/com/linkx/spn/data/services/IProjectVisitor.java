@@ -16,6 +16,7 @@ public interface IProjectVisitor {
     List<Project> getAllProjects();
 
     String generateProjectId();
+    String generateStepId();
 
     void saveProject(Project project);
 

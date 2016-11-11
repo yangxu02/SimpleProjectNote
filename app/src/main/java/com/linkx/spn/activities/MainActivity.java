@@ -2,6 +2,7 @@ package com.linkx.spn.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -13,7 +14,8 @@ import com.linkx.spn.data.services.LastVisitedProjectChangedEvent;
 import com.linkx.spn.view.components.ViewActionMenu;
 import com.linkx.spn.view.components.ViewProjectDetail;
 import com.linkx.spn.view.components.ViewProjectListPanel;
-import com.linkx.spn.view.dialogs.ProjectNameInputDialog;
+import com.linkx.spn.view.dialogs.ProjectAddDialog;
+import rx.Subscriber;
 import rx.Subscription;
 
 public class MainActivity extends BaseActivity {
@@ -44,17 +46,50 @@ public class MainActivity extends BaseActivity {
     private void setupViews() {
         setupActionMenu();
 
-        Project lastSelected = getLastSelectedProject();
-        if (null == lastSelected) {
-            showProjectAddDialog();
-        } else {
-            projectDetail.update(lastSelected);
-        }
+        ProjectVisitingService service = ProjectVisitingService.worker();
+        service.getProjectToShow(new Subscriber<Project>() {
+            Project project;
+            @Override
+            public void onCompleted() {
+                if (null == project) {
+                    showProjectAddDialog();
+                } else {
+                    projectDetail.update(project);
+                }
+            }
 
-        subscription = RxEventBus.onEventMainThread(LastVisitedProjectChangedEvent.class, visitingProjectChangedEvent -> {
-            Project project = ProjectVisitingService.worker().getProjectById(visitingProjectChangedEvent.projectId);
-            projectDetail.update(project);
-            projectListPanel.setVisibility(View.GONE);
+            @Override
+            public void onError(Throwable e) {
+                Log.w("", e);
+            }
+
+            @Override
+            public void onNext(Project project) {
+                this.project = project;
+            }
+        });
+
+        subscription = RxEventBus.onEventMainThread(LastVisitedProjectChangedEvent.class, e -> {
+            service.getProjectById(e.projectId, new Subscriber<Project>() {
+                Project project;
+                @Override
+                public void onCompleted() {
+                    projectDetail.update(project);
+                    projectListPanel.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    Log.w("", e);
+                    projectListPanel.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onNext(Project project) {
+                    this.project = project;
+                }
+            });
         });
     }
 
@@ -67,13 +102,9 @@ public class MainActivity extends BaseActivity {
         actionMenu.getAddProject().setOnClickListener(l -> showProjectAddDialog());
     }
 
-    private Project getLastSelectedProject() {
-        return null;
-    }
-
     private void showProjectAddDialog() {
         FragmentManager fm = this.getSupportFragmentManager();
-        ProjectNameInputDialog.create("", "").show(fm, "");
+        ProjectAddDialog.create("", "").show(fm, "");
     }
 
 }
